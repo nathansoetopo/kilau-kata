@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="{{ url('styles/global/nicepage.css') }}" media="screen" class="u-static-style">
