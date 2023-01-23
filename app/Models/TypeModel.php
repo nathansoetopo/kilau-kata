@@ -11,4 +11,8 @@ class TypeModel extends Model
 
     protected $table = 'type';
     protected $guarded = ['id'];
+
+    public function assets(){
+        return $this->hasMany(AssetModel::class, 'type_id', 'id');
+    }
 }

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssetModel;
+use App\Models\TypeModel;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index() {
-        return view('pages.landing.product');
+        $data = TypeModel::with('assets')->get();
+
+        return view('pages.landing.product', compact('data'));
     }
 }

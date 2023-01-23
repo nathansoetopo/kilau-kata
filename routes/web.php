@@ -29,9 +29,15 @@ Route::get('/join-us', [JoinController::class, 'index'])->name('landing-join-us'
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('dashboard', function(){
         return view('admin.pages.dashboard');
-    });
+    })->name('dashboard');
 
     Route::get('list', [AssetController::class, 'index'])->name('index');
+
     Route::get('create', [AssetController::class, 'create'])->name('create');
     Route::post('create', [AssetController::class, 'store'])->name('store');
+
+    Route::get('{id}/edit', [AssetController::class, 'edit'])->name('edit');
+    Route::put('{id}/edit', [AssetController::class, 'update'])->name('update');
+
+    Route::delete('{id}/delete', [AssetController::class, 'delete'])->name('delete');
 });

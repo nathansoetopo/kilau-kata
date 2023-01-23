@@ -34,7 +34,7 @@
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Tanggal Input
                                     </th>
-                                    <th class="text-secondary opacity-7">Aksi</th>
+                                    {{-- <th class="text-secondary opacity-7">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,8 +43,8 @@
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="{{asset('storage/'.$asset->cover)}}" class="avatar avatar-sm me-3"
-                                                    alt="user1">
+                                                <img src="{{asset('storage/'.$asset->cover)}}"
+                                                    class="avatar avatar-sm me-3" alt="user1">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">{{$asset->title}}</h6>
@@ -56,25 +56,28 @@
                                         <p class="text-xs font-weight-bold mb-0">{{$asset->type->name}}</p>
                                     </td>
                                     <td class="align-middle">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$asset->publisher->name}}</span>
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{$asset->publisher->name}}</span>
                                     </td>
                                     <td class="align-middle">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$asset->category->name}}</span>
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{$asset->category->name}}</span>
                                     </td>
                                     <td class="align-middle">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$asset->author->name}}</span>
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{$asset->author->name}}</span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         <span class="badge badge-sm bg-gradient-success">Online</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$asset->created_at}}</span>
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{$asset->created_at}}</span>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                            data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
+                                        <a href="{{route('admin.edit', ['id' => $asset->id])}}" type="button"
+                                            class="btn btn-sm btn-outline-warning">Edit</a>
+                                        <a href="#" type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete{{$asset->id}}">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -123,4 +126,34 @@
         </div>
     </footer>
 </div>
+{{-- Modal Delete --}}
+@foreach ($data as $asset)
+<div class="modal fade" id="delete{{$asset->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-notification"
+    aria-hidden="true">
+    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modal-title-notification">PERHATIAN</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="py-3 text-center">
+                    <i class="ni ni-bell-55 ni-3x"></i>
+                    <h4 class="text-gradient text-danger mt-4">Hapus Data Asset "{{$asset->title}}"</h4>
+                    <p>Data akan dihapus secara permanen dan tidak dapat dipulihkan.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form action="{{route('admin.delete', ['id' => $asset->id])}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 @endsection
