@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('landing-home');
 Route::get('/products', [ProductController::class, 'index'])->name('landing-product');
+Route::get('{id}/detail', [ProductController::class, 'detail'])->name('detail');
 Route::get('/about-us', [AboutController::class, 'index'])->name('landing-about');
 Route::get('/join-us', [JoinController::class, 'index'])->name('landing-join-us');
 

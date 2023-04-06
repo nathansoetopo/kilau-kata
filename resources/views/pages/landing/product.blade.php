@@ -112,12 +112,14 @@
                     <div class="u-align-left u-container-style u-products-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-container-layout-3">
                             <!--product_image-->
-                            <img alt="" class="u-image u-image-default u-product-control u-image-3"
-                                src="{{ url('images/cacing-planaria.jpg') }}" data-image-width="764"
+                            <a href="{{route('detail', ['id' => $asset->id])}}">
+                                <img alt="" class="u-image u-image-default u-product-control u-image-3"
+                                src="{{ asset('storage/'.$asset->cover) }}" data-image-width="764"
                                 data-image-height="1080">
+                            </a>
                             <!--/product_image-->
-                            <p class="u-custom-font u-custom-item u-text u-text-6">{{$asset->title}}</p>
-                            <p class="u-custom-font u-text u-text-7">{{$asset->price}}</p>
+                            <a href="{{route('detail', ['id' => $asset->id])}}"><p class="u-custom-font u-custom-item u-text u-text-6">{{$asset->title}}</p></a>
+                            <p class="u-custom-font u-text u-text-7">Rp. @money($asset->price)</p>
                         </div>
                     </div>
                 @empty

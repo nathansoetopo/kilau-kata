@@ -27,5 +27,5 @@
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Product">
     <meta property="og:type" content="website">
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>

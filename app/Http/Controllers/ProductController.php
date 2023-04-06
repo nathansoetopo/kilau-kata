@@ -13,4 +13,9 @@ class ProductController extends Controller
 
         return view('pages.landing.product', compact('data'));
     }
+
+    public function detail($id){
+        $asset = AssetModel::find($id);
+        return view('pages.landing.detail', compact('asset'));
+    }
 }
